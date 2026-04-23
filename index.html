@@ -6,5 +6,29 @@
 <body>
     <h1>🚀 Hola, estoy en Azure (sin cuota 😎)</h1>
     <p>Deploy exitoso con Static Web Apps</p>
+    <input type="text" id="nombre" placeholder="Nombre">
+<input type="email" id="email" placeholder="Email">
+
+<button onclick="guardar()">Guardar</button>
+
+<script>
+async function guardar() {
+
+    const nombre = document.getElementById("nombre").value;
+    const email = document.getElementById("email").value;
+
+    const response = await fetch('/api/guardarUsuario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, email })
+    });
+
+    const resultado = await response.text();
+
+    alert(resultado);
+}
+</script>
 </body>
 </html>
