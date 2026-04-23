@@ -54,6 +54,43 @@
 
             }
         }
+        <script>
+
+async function listarUsuarios() {
+
+    try {
+
+        const response = await fetch('/api/listarUsuarios');
+
+        const usuarios = await response.json();
+
+        const tbody = document.querySelector("#tablaUsuarios tbody");
+
+        tbody.innerHTML = "";
+
+        usuarios.forEach(usuario => {
+
+            const fila = `
+                <tr>
+                    <td>${usuario.Id}</td>
+                    <td>${usuario.Nombre}</td>
+                    <td>${usuario.Email}</td>
+                    <td>${usuario.FechaRegistro}</td>
+                </tr>
+            `;
+
+            tbody.innerHTML += fila;
+        });
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Error obteniendo usuarios");
+
+    }
+}
+
+</script>
     </script>
     <hr>
 
