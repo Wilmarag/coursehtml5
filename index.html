@@ -1,34 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Mi App en Azure</title>
 </head>
 <body>
+
     <h1>🚀 Hola, estoy en Azure (sin cuota 😎)</h1>
     <p>Deploy exitoso con Static Web Apps</p>
+
+    <hr>
+
+    <h2>Guardar Usuario</h2>
+
     <input type="text" id="nombre" placeholder="Nombre">
-<input type="email" id="email" placeholder="Email">
+    <br><br>
 
-<button onclick="guardar()">Guardar</button>
+    <input type="email" id="email" placeholder="Email">
+    <br><br>
 
-<script>
-async function guardar() {
+    <button onclick="guardar()">Guardar</button>
 
-    const nombre = document.getElementById("nombre").value;
-    const email = document.getElementById("email").value;
+    <script>
+        async function guardar() {
 
-    const response = await fetch('/api/guardarUsuario', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ nombre, email })
-    });
+            const nombre = document.getElementById("nombre").value;
+            const email = document.getElementById("email").value;
 
-    const resultado = await response.text();
+            // Validación simple
+            if (!nombre || !email) {
+                alert("Completa todos los campos");
+                return;
+            }
 
-    alert(resultado);
-}
-</script>
+            try {
+
+                const response = await fetch('/api/guardarUsuario', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nombre, email })
+                });
+
+                const resultado = await response.text();
+
+                alert(resultado);
+
+            } catch (error) {
+
+                alert("Error conectando con el backend");
+                console.error(error);
+
+            }
+        }
+    </script>
+
 </body>
 </html>
