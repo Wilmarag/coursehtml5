@@ -21,13 +21,34 @@
 
     <button onclick="guardar()">Guardar</button>
 
+    <hr>
+
+    <h2>Usuarios Registrados</h2>
+
+    <button onclick="listarUsuarios()">Ver Usuarios</button>
+
+    <br><br>
+
+    <table border="1" id="tablaUsuarios">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
     <script>
+
         async function guardar() {
 
             const nombre = document.getElementById("nombre").value;
             const email = document.getElementById("email").value;
 
-            // Validación simple
             if (!nombre || !email) {
                 alert("Completa todos los campos");
                 return;
@@ -54,64 +75,42 @@
 
             }
         }
-        <script>
 
-async function listarUsuarios() {
+        async function listarUsuarios() {
 
-    try {
+            try {
 
-        const response = await fetch('/api/listarUsuarios');
+                const response = await fetch('/api/listarUsuarios');
 
-        const usuarios = await response.json();
+                const usuarios = await response.json();
 
-        const tbody = document.querySelector("#tablaUsuarios tbody");
+                const tbody = document.querySelector("#tablaUsuarios tbody");
 
-        tbody.innerHTML = "";
+                tbody.innerHTML = "";
 
-        usuarios.forEach(usuario => {
+                usuarios.forEach(usuario => {
 
-            const fila = `
-                <tr>
-                    <td>${usuario.Id}</td>
-                    <td>${usuario.Nombre}</td>
-                    <td>${usuario.Email}</td>
-                    <td>${usuario.FechaRegistro}</td>
-                </tr>
-            `;
+                    const fila = `
+                        <tr>
+                            <td>${usuario.Id}</td>
+                            <td>${usuario.Nombre}</td>
+                            <td>${usuario.Email}</td>
+                            <td>${usuario.FechaRegistro}</td>
+                        </tr>
+                    `;
 
-            tbody.innerHTML += fila;
-        });
+                    tbody.innerHTML += fila;
+                });
 
-    } catch (error) {
+            } catch (error) {
 
-        console.error(error);
-        alert("Error obteniendo usuarios");
+                console.error(error);
+                alert("Error obteniendo usuarios");
 
-    }
-}
+            }
+        }
 
-</script>
     </script>
-    <hr>
-
-<h2>Usuarios Registrados</h2>
-
-<button onclick="listarUsuarios()">Ver Usuarios</button>
-
-<br><br>
-
-<table border="1" id="tablaUsuarios">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Fecha</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
 
 </body>
 </html>
