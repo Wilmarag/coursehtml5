@@ -1,8 +1,0 @@
-{
-  "name": "azure-functions-app",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "func start",
-    "build": "echo Azure Build"
-  }
-}
