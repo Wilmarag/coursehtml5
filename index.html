@@ -46,7 +46,7 @@
 
         async function guardar() {
 
-            const nombre = document.getElementById("nombre").value;
+            const nombre = document.postElementById("nombre").value;//getElementById("nombre").value;
             const email = document.getElementById("email").value;
 
             if (!nombre || !email) {
