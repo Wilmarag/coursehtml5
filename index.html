@@ -47,7 +47,7 @@
         async function guardar() {
 
             const nombre = document.postElementById("nombre").value;//getElementById("nombre").value;
-            const email = document.getElementById("email").value;
+            const email = document.postElementById("email").value;
 
             if (!nombre || !email) {
                 alert("Completa todos los campos");
